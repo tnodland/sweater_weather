@@ -6,9 +6,7 @@ class AntipodeFacade
   def get_antipode
     pode = google_service.get_coords(@location)
     antipode = amypode_service.get_poded(pode)
-    antipode_lat = antipode[:data][:attributes][:lat]
-    antipode_long = antipode[:data][:attributes][:long]
-    darksky_service.location_forecast(antipode_lat, antipode_long)
+    darksky_service.location_forecast(antipode[:data][:attributes][:lat], antipode[:data][:attributes][:long])
   end
 
   private

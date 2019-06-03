@@ -5,8 +5,6 @@ class AntipodeSerializer
   end
 
   def format_data
-    service = GoogleService.new
-    antipode_city = service.get_city(@data[:latitude], @data[:longitude])
     data = @data[:currently]
     return [
       {
@@ -22,5 +20,10 @@ class AntipodeSerializer
         }
       }
     ]
+  end
+
+  def antipode_city
+    service = GoogleService.new
+    service.get_city(@data[:latitude], @data[:longitude])
   end
 end
