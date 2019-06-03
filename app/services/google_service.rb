@@ -9,6 +9,7 @@ class GoogleService
   end
 
   def get_city(lat, long)
+
     response = conn.get("geocode/json") do |req|
       req.params[:latlng] = "#{lat},#{long}"
     end
