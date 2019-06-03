@@ -4,9 +4,13 @@ class AntipodeFacade
   end
 
   def get_antipode
-    service1 = GoogleService.new
-    pode = service1.get_coords(@location)
-    binding.pry
-    service2 = AmypodeService.new
+    google_service = GoogleService.new
+    amypode_service = AmypodeService.new
+    darksky_service = DarkskyService.new
+    pode = google_service.get_coords(@location)
+    antipode = amypode_service.get_poded(pode)
+    antipode_lat = antipode[:data][:attributes][:lat]
+    antipode_long = antipode[:data][:attributes][:long]
+    weather = darksky_service.location_forecast(antipode_lat, antipode_long)
   end
 end
