@@ -5,7 +5,7 @@ RSpec.describe GoogleService do
     service = GoogleService.new
 
     response = service.get_coords("denver,co")
-    # binding.pry
+  
     expect(response).to be_a(Hash)
     expect(response).to have_key(:lat)
     expect(response).to have_key(:lng)
