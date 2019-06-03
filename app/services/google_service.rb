@@ -9,7 +9,6 @@ class GoogleService
   end
 
   def get_city(lat, long)
-
     response = conn.get("geocode/json") do |req|
       req.params[:latlng] = "#{lat},#{long}"
     end
@@ -20,9 +19,9 @@ class GoogleService
 
   private
     def conn
-      Faraday.new("https://maps.googleapis.com/maps/api/") do |f|
-        f.adapter Faraday.default_adapter
-        f.params[:key] = ENV['GOOGLE-API-KEY']
-      end
+      @_conn ||= Faraday.new("https://maps.googleapis.com/maps/api/") do |f|
+                  f.adapter Faraday.default_adapter
+                  f.params[:key] = ENV['GOOGLE-API-KEY']
+                end
     end
 end
