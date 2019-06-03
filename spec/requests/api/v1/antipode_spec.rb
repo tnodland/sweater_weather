@@ -5,8 +5,14 @@ RSpec.describe 'getting weather of an antipode' do
     get '/api/v1/antipode?loc=hongkong'
 
     expect(response).to be_successful
-    
-    expect(JSON.parse(response.body)).to have_key("data")
-
+    parsed_data = JSON.parse(response.body)
+    expect(parsed_data).to have_key("data")
+    expect(parsed_data["data"][0]).to be_a(Hash)
+    expect(parsed_data["data"][0]).to have_key("id")
+    expect(parsed_data["data"][0]).to have_key("type")
+    expect(parsed_data["data"]["attributes"]).to be_a(Hash)
+    expect(parsed_data["data"]["attributes"]).to have_key("location_name")
+    expect(parsed_data["data"]["attributes"]).to have_key("forecast")
+    expect(parsed_data["data"]["attributes"]).to have_key("search_location")
   end
 end
