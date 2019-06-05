@@ -1,24 +1,35 @@
-# README
+An antipode is the point on the planet that is diametrically opposite.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+You will create an endpoint like so:, `/api/v1/antipode?loc=hongkong`
 
-Things you may want to cover:
+You will use the `Amypode API` to determine the antipode for Hong Kong.
 
-* Ruby version
+[`http://amypode.herokuapp.com/api/v1/antipodes?lat=27&long=-82`]
 
-* System dependencies
+This is a sample request. Amypode API requires header based authentication. It expects the  `api_key` header to be set to your key, which is `oscar_the_grouch`
 
-* Configuration
+Your endpoint will give the user the original city, and the antipode's location name and its current weather summary and current temperature.
 
-* Database creation
+To retrieve the antipode's name use something like Google's reverse geocoding documented here: https://developers.google.com/maps/documentation/geocoding/start
 
-* Database initialization
+You should reuse the code you have currently written for retrieving weather.
 
-* How to run the test suite
+Your response should resemble the structure and contain the following data:
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "antipode",
+            "attributes": {
+                "location_name": "Antipode City Name",
+                "forecast": {
+                    "summary": "Mostly Cloudy,
+                    "current_temperature": "72",
+                				},
+            "search_location": "Hong Kong"
+            }
+        }
+    ]
+}
